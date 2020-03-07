@@ -345,11 +345,11 @@ void loop(){
         magnetrometer.update(magneX*asax*SCALE,magneY*asay*SCALE,magneZ*asaz*SCALE);
         magnetrometer.getAffineTrans(x_c,y_c,z_c,x_r,y_r,z_r);
 
+        //map the axis of magnetometer to the axis of accelerometer
         magnet[0][0] = (magneY*asay*SCALE-y_c)/y_r;
         magnet[1][0] = (magneX*asax*SCALE-x_c)/x_r;
         magnet[2][0] = -(magneZ*asaz*SCALE-z_c)/z_r;
 
-        
 		composeOmega();
 		A = I_4 + 0.5f*omega*dt;
 		q_pri = A*q_post;
